@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<data>
+    <command name="showfps">
+        <property>"persist.debug.sf.showfps"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"PROFILE_PREVIEW_FRAMES_PER_SECOND"</keyword>
+        <description>"Show preview fps."</description>
+    </command>
+    <command name="halglobal">
+        <property>"persist.vendor.camera.global.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"TODO:"</keyword>
+        <description>"hal global switch"</description>
+    </command>
+    <command name="hal">
+        <property>"persist.vendor.camera.hal.debug"</property>
+        <valueon>5</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"TODO:"</keyword>
+        <description>"Show hal log"</description>
+    </command>
+    <command name="mci">
+        <property>"persist.vendor.camera.mci.debug"</property>
+        <valueon>5</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"TODO:"</keyword>
+        <description>"Show mci log"</description>
+    </command>
+</data>
