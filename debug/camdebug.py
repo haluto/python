@@ -20,7 +20,7 @@
 import sys
 import os
 import xml.etree.ElementTree as ET
-
+from optparse import OptionParser
 
 ########################################################################
 # CommandItem class
@@ -58,8 +58,8 @@ class CommandItem:
 # function name: readxml
 # return: list of commandItem
 ########################################################################
-def readxml():
-    tree = ET.parse('info.xml')
+def readxml(xml):
+    tree = ET.parse(xml)
     root = tree.getroot()
 
     commandList = []
@@ -99,9 +99,9 @@ Usage:  camdebug --help(-h)  -> to show supported commands.
 
 
 ########################################################################
-# function name: help
+# function name: list_cmd
 ########################################################################
-def help(commandList):
+def list_cmd(commandList):
     for item in commandList:
         print item.name()
         print "        ", item.description().replace('"', '')
@@ -173,7 +173,23 @@ def run_command(cmd, commandList):
 # function name: main
 ########################################################################
 def main():
-    
+    usage = "usage: %prog [option]"
+    parser = OptionParser()
+    # action = "store_true", -l后面不需要带参数。[如果输入命令有-l，值是True，没有的话值是None][store_false同理]
+    parser.add_option("-l", "--list", action = "store_true", dest = "listCmd", help = "List all supported command.")
+    # action = "store" 表示-f后面必须带参数。[action选项：store, store_true, store_false]
+    parser.add_option("-f", "--file", action = "store", dest = "xml",
+                      default="info.xml", help = "Set xml file for config.")
+    parser.add_option("-c", "--cmd", action = "store", dest = "cmd",
+                      default=None, help = "Set your cmd list.")
+
+    options, args = parser.parse_args()
+    if options.listCmd is True:
+        commandList = readxml(options.xml)
+        list_cmd(commandList)
+
+
+'''
     if (len(sys.argv) == 2):
         commandList = readxml()
         if (sys.argv[1] == "--help" or sys.argv[1] == "-h"):
@@ -185,6 +201,7 @@ def main():
             print "Sorry, %s is not supported." % sys.argv[1]
     else:
         usage()
+'''
 
 if __name__ == '__main__':
     main()
