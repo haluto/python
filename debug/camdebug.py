@@ -184,9 +184,32 @@ def main():
                       default=None, help = "Set your cmd list.")
 
     options, args = parser.parse_args()
+
+    # Step 1, check whether the config file exists.
+    if not os.path.isfile(options.xml):
+        print "%s is not exist!" % options.xml
+        return
+
+    # Step 2, if -l/--list, it means user just want to view the supported command list, won't care other options.
     if options.listCmd is True:
         commandList = readxml(options.xml)
         list_cmd(commandList)
+        return
+
+    # Step 3, parse -c/--cmd string to run the commands.
+    if (options.cmd is not None):
+        cmdList = options.cmd.split(" ")
+        for cmd in cmdList:
+            if (cmd.isspace() or cmd == ""):
+                continue
+            else:
+                commandList = readxml(options.xml)
+                if is_cmd_in_commandList(cmd, commandList):
+                    print "OK, %s is supported" % cmd
+                    run_command(cmd, commandList)
+                else:
+                    print "Sorry, %s is not supported." % cmd
+
 
 
 '''
