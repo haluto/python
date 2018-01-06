@@ -92,15 +92,6 @@ def readxml(xml):
         print name, property
 '''
 
-########################################################################
-# function name: usage
-########################################################################
-def usage():
-    print '''
-Usage:  camdebug --help(-h)  -> to show supported commands.
-        camdebug <command>   -> to run supported command.
-    '''
-
 
 ########################################################################
 # function name: list_cmd
@@ -173,11 +164,11 @@ def run_command(cmd, commandList, disable=False):
                 elif disable==False and outStr.rstrip() == item.valueon():
                     print "Set property succeeded."
                     #print "You can grep %s as keyword for %s to check the log now." % (item.keyword(), item.name())
-                    print "You can grep ",
+                    print "keyword is",
                     print HiliteE,
                     print item.keyword(),
                     print HiliteX,
-                    print " as keyword for %s to check the log now." % item.name()
+                    print "for %s." % item.name()
                 else:
                     print "Set property failed."
                 break
@@ -198,20 +189,21 @@ def run_all_commands(xml, disable=False):
 # function name: main
 ########################################################################
 def main():
-    usage = "usage: %prog [option]"
-    parser = OptionParser()
+    usage = '%prog [Options]'
+
+    parser = OptionParser(usage)
     # action = "store_true", -l后面不需要带参数。[如果输入命令有-l，值是True，没有的话值是None][store_false同理]
     parser.add_option("-l", "--list", action = "store_true", 
-                      dest = "listCmd", help = "List all supported command.")
+                      dest = "listCmd", help = "list all supported commands")
     # action = "store" 表示-f后面必须带参数。[action选项：store, store_true, store_false]
     parser.add_option("-f", "--file", action = "store", default="info.xml",
-                      dest = "xml", help = "Set xml file for config.")
+                      dest = "xml", help = "set xml file for config")
     parser.add_option("-c", "--cmd", action = "store", default=None,
-                      dest = "cmd", help = "Set your cmd list.")
+                      dest = "cmd", help = "set your cmd list, use '-' behind the command string to disable the cmd.")
     parser.add_option("-a", "--all", action = "store_true", 
-                      dest = "all", help = "Run all commands supported in xml file.")
+                      dest = "all", help = "run all commands supported in xml file.")
     parser.add_option("-d", "--disableall", action = "store_true", 
-                      dest = "disableall", help = "Disable all commands supported in xml file.")
+                      dest = "disableall", help = "disable all commands supported in xml file.")
 
     options, args = parser.parse_args()
 
@@ -257,21 +249,6 @@ def main():
                 else:
                     print "Sorry, %s is not supported." % real_cmd
 
-
-
-'''
-    if (len(sys.argv) == 2):
-        commandList = readxml()
-        if (sys.argv[1] == "--help" or sys.argv[1] == "-h"):
-            help(commandList)
-        elif (is_cmd_in_commandList(sys.argv[1], commandList)):
-            print "OK, %s is supported" % sys.argv[1]
-            run_command(sys.argv[1], commandList)
-        else:
-            print "Sorry, %s is not supported." % sys.argv[1]
-    else:
-        usage()
-'''
 
 if __name__ == '__main__':
     main()
