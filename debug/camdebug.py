@@ -22,6 +22,10 @@ import os
 import xml.etree.ElementTree as ET
 from optparse import OptionParser
 
+
+HiliteE = '\033[1;31;47m'
+HiliteX = '\033[0m'
+
 ########################################################################
 # CommandItem class
 ########################################################################
@@ -168,7 +172,12 @@ def run_command(cmd, commandList, disable=False):
                     print "Set property succeeded."
                 elif disable==False and outStr.rstrip() == item.valueon():
                     print "Set property succeeded."
-                    print "You can grep %s as keyword for %s to check the log now." % (item.keyword(), item.name()) 
+                    #print "You can grep %s as keyword for %s to check the log now." % (item.keyword(), item.name())
+                    print "You can grep ",
+                    print HiliteE,
+                    print item.keyword(),
+                    print HiliteX,
+                    print " as keyword for %s to check the log now." % item.name()
                 else:
                     print "Set property failed."
                 break
