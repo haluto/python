@@ -18,14 +18,157 @@
         <property>"persist.vendor.camera.hal.debug"</property>
         <valueon>5</valueon>
         <valueoff>0</valueoff>
-        <keyword>"TODO:"</keyword>
+        <keyword>"&lt;HAL&gt;"</keyword>
         <description>"Show hal log."</description>
     </command>
     <command name="mci">
         <property>"persist.vendor.camera.mci.debug"</property>
         <valueon>5</valueon>
         <valueoff>0</valueoff>
-        <keyword>"TODO:"</keyword>
+        <keyword>"&lt;MCI&gt;"</keyword>
         <description>"Show mci log."</description>
     </command>
+    <command name="isp">
+        <property>"persist.vendor.camera.isp.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"TODO:"</keyword>
+        <description>"Show isp log."</description>
+    </command>
+    <command name="pproc">
+        <property>"persist.vendor.camera.pproc.debug.mask"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;PPROC &gt;"</keyword>
+        <description>"Show pproc log."</description>
+    </command>
+    <command name="imglib">
+        <property>"persist.vendor.camera.imglib.logs"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;IMGLIB&gt;"</keyword>
+        <description>"Show imglib log."</description>
+    </command>
+    <command name="cpp">
+        <property>"persist.vendor.camera.cpp.debug.mask"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;CPP   &gt;"</keyword>
+        <description>"Show cpp log."</description>
+    </command>
+    <command name="mmstill">
+        <property>"persist.vendor.camera.mmstill.logs"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;JPEG&gt;"</keyword>
+        <description>"Show mmstill log."</description>
+    </command>
+    <command name="shim">
+        <property>"persist.vendor.camera.shim.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;SHIM  &gt;"</keyword>
+        <description>"Show shim log."</description>
+    </command>
+    <command name="c2d">
+        <property>"persist.vendor.camera.c2d.debug.mask"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;C2D   &gt;"</keyword>
+        <description>"Show c2d log."</description>
+    </command>
+    <command name="stats">
+        <property>"persist.vendor.camera.stats.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS &gt;"</keyword>
+        <description>"Show stats log."</description>
+    </command>
+    <command name="af">
+        <property>"persist.vendor.camera.stats.af.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_AF &gt;"</keyword>
+        <description>"Show af log."</description>
+    </command>
+    <command name="mct">
+        <property>"persist.vendor.camera.mct.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;MCT   &gt;"</keyword>
+        <description>"Show mct log."</description>
+    </command>
+    <command name="sensor">
+        <property>"persist.vendor.camera.sensor.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;SENSOR&gt;"</keyword>
+        <description>"Show sensor log."</description>
+    </command>
+    <command name="iface">
+        <property>"persist.vendor.camera.iface.logs"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;IFACE &gt;"</keyword>
+        <description>"Show iface log."</description>
+    </command>
+    <command name="q3a">
+        <property>"persist.vendor.camera.stats.q3a.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_Q3A &gt;"</keyword>
+        <description>"Show stats q3a log."</description>
+    </command>
+    <command name="is">
+        <property>"persist.vendor.camera.stats.is.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_AIS &gt;"</keyword>
+        <description>"Show stats ais log."</description>
+    </command>
+    <command name="haf">
+        <property>"persist.vendor.camera.stats.haf.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_HAF &gt;"</keyword>
+        <description>"Show stats haf log."</description>
+    </command>
+    <command name="cafscan">
+        <property>"persist.vendor.camera.stats.cafscan"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_CAFSCAN &gt;"</keyword>
+        <description>"Show stats cafscan log."</description>
+    </command>
+    <command name="aec">
+        <property>"persist.vendor.camera.stats.aec.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_AEC &gt;"</keyword>
+        <description>"Show stats aec log."</description>
+    </command>
+    <command name="awb">
+        <property>"persist.vendor.camera.stats.awb.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_AWB &gt;"</keyword>
+        <description>"Show stats awb log."</description>
+    </command>
+    <command name="asd">
+        <property>"persist.vendor.camera.stats.asd.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_ASD &gt;"</keyword>
+        <description>"Show stats asd log."</description>
+    </command>
+    <command name="afd">
+        <property>"persist.vendor.camera.stats.afd.debug"</property>
+        <valueon>1</valueon>
+        <valueoff>0</valueoff>
+        <keyword>"&lt;STATS_AFD &gt;"</keyword>
+        <description>"Show stats afd log."</description>
+    </command>
 </data>
+
+
+

@@ -133,7 +133,7 @@ def is_cmd_in_commandList(cmd, commandList):
 ########################################################################
 # function name: run_command
 ########################################################################
-def run_command(cmd, commandList, disable=False):
+def run_command(cmd, commandList, disable=False, specialValue=''):
 
     needRun = False
 
@@ -147,11 +147,18 @@ def run_command(cmd, commandList, disable=False):
     if (needRun):
         for item in commandList:
             if item.name() == cmd:
-                #item.prop().replace('"','') is to remove " in string.
+                
+                setValue = ''
                 if disable:
-                    cmdStr = "adb shell setprop " + item.prop().replace('"','') + " " + item.valueoff()
+                    setValue = item.valueoff()
+                elif (specialValue == ''):
+                    setValue = item.valueon()
                 else:
-                    cmdStr = "adb shell setprop " + item.prop().replace('"','') + " " + item.valueon()
+                    setValue = specialValue
+
+                #item.prop().replace('"','') is to remove " in string.
+                cmdStr = "adb shell setprop " + item.prop().replace('"','') + " " + setValue
+
                 print cmdStr
                 os.popen(cmdStr)
 
@@ -159,9 +166,9 @@ def run_command(cmd, commandList, disable=False):
                 cmdStr = "adb shell getprop " + item.prop().replace('"','')
                 output = os.popen(cmdStr)
                 outStr = output.read()
-                if disable and outStr.rstrip() == item.valueoff():
+                if disable and outStr.rstrip() == setValue:
                     print "Set property succeeded."
-                elif disable==False and outStr.rstrip() == item.valueon():
+                elif disable==False and outStr.rstrip() == setValue:
                     print "Set property succeeded."
                     #print "You can grep %s as keyword for %s to check the log now." % (item.keyword(), item.name())
                     print "keyword is",
@@ -199,7 +206,9 @@ def main():
     parser.add_option("-f", "--file", action = "store", default="info.xml",
                       dest = "xml", help = "set xml file for config")
     parser.add_option("-c", "--cmd", action = "store", default=None,
-                      dest = "cmd", help = "set your cmd list, use '-' behind the command string to disable the cmd.")
+                      dest = "cmd", help = '''set your cmd list.
+                                              use '-' behind the command string to disable the cmd
+                                              use '=value' behind the command string to set special value''')
     parser.add_option("-a", "--all", action = "store_true", 
                       dest = "all", help = "run all commands supported in xml file.")
     parser.add_option("-d", "--disableall", action = "store_true", 
@@ -243,14 +252,22 @@ def main():
                 # Suppose "showfps-" means disable showfps.
                 disable = False
                 real_cmd = cmd
+                # Suppose "hal=4" means want to set hal as special value, here is 4, instead of valueon in xml.
+                eqIndex = cmd.rfind('=')
+                specialValue = ''
 
                 if cmd[-1:] == "-":
                     real_cmd = cmd[:-1]
                     disable = True
+                elif eqIndex > 0:
+                    real_cmd = cmd[:eqIndex]
+                    specialValue = cmd[eqIndex+1:]
+
                 commandList = readxml(options.xml)
+
                 if is_cmd_in_commandList(real_cmd, commandList):
                     print "OK, %s is supported" % real_cmd
-                    run_command(real_cmd, commandList, disable)
+                    run_command(real_cmd, commandList, disable, specialValue)
                 else:
                     print "Sorry, %s is not supported." % real_cmd
 
