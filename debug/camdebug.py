@@ -218,6 +218,11 @@ def main():
         list_cmd(commandList)
         return
 
+    # Step 2.5, if -a and -d are configed together, means the user is stupid...
+    if options.all is True and options.disableall is True:
+        print "Hi man, are you crazy?"
+        return
+
     # Step 3, if -a/--all, it means run all commands, so ignore -c/--cmd.
     if options.all is True:
         run_all_commands(options.xml)
