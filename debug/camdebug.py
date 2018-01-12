@@ -217,6 +217,7 @@ def main():
     options, args = parser.parse_args()
 
     # Step 1, check whether the config file exists.
+    options.xml = sys.path[0] + '/' + options.xml
     if not os.path.isfile(options.xml):
         print "%s is not exist!" % options.xml
         return
