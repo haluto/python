@@ -7,7 +7,7 @@
         <keyword>"PROFILE_PREVIEW_FRAMES_PER_SECOND"</keyword>
         <description>"Show preview fps."</description>
     </command>
-    <command name="halglobal">
+    <command name="gl">
         <property>"persist.vendor.camera.global.debug"</property>
         <valueon>1</valueon>
         <valueoff>0</valueoff>
