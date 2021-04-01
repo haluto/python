@@ -11,4 +11,12 @@ function install_cutFile() {
   echo "cutFile installed."
 }
 
+function install_myMan() {
+  myman_tool_path=${tool_path}/myMan
+  cd ${bin_path}
+  ln -s ${myman_tool_path}/myman.py myman
+  echo "myman installed."
+}
+
 install_cutFile
+install_myMan
